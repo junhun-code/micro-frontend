@@ -1,0 +1,21 @@
+{
+  "name": "sub-app-about",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "vue-cli-service serve --mode dev",
+    "build:test": "vue-cli-service build --mode test"
+  },
+  "dependencies": {
+    "core-js": "^3.4.4",
+    "single-spa-vue": "^1.5.4",
+    "systemjs-webpack-interop": "^1.1.2",
+    "vue": "^2.6.10",
+    "vue-router": "^3.1.3"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.1.0",
+    "@vue/cli-service": "^4.1.0",
+    "vue-template-compiler": "^2.6.10"
+  }
+}
