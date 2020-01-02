@@ -1,8 +1,8 @@
 <template>
   <div id="vue-home" class="app">
     <div id="nav">
-      <router-link to="/home-1">home-1</router-link> |
-      <router-link to="/home-2">home-2</router-link>
+      <router-link to="home-1">home-1</router-link> |
+      <router-link to="home-2">home-2</router-link>
     </div>
     <router-view/>
   </div>

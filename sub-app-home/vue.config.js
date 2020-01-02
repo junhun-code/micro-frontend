@@ -11,7 +11,7 @@ const env = process.env.VUE_APP_ENV;
 const assetsPublicPath =
   env === "prod" || env === "pre"
     ? "//img2.beikewen.com/ml-statics/prod/"
-    : process.env.BASE_URL;
+    : "//localhost:3001/home/";
 
 module.exports = {
     publicPath: assetsPublicPath,
