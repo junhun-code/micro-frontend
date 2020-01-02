@@ -17,9 +17,8 @@ window.globalBus = new Bus({
 
 window.globalBus.createSocket('vueSocket', [], (socket) => {
     // 一个状态必须在init之后才能被set
-    const vueSocket = window.globalBus.getSocket('vueSocket');
-    if(vueSocket && vueSocket.getState('text') === undefined) {
-      vueSocket.initState('text', '');
+    if(socket && socket.getState('text') === undefined) {
+      socket.initState('text', '');
     }
 });
 
