@@ -7,6 +7,7 @@
     "build:test": "vue-cli-service build --mode test"
   },
   "dependencies": {
+    "@runnan/obvious": "^1.0.4",
     "ant-design-vue": "^1.4.10",
     "core-js": "^3.4.4",
     "single-spa": "^4.4.2",

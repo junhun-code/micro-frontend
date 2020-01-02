@@ -1,5 +1,5 @@
 <template>
-  <a-layout id="components-layout-demo-custom-trigger">
+  <a-layout id="components-layout-demo-custom-trigger" @click="triggerSocketEmit">
     <a-layout-sider :trigger="null" collapsible v-model="collapsed">
       <div class="logo" />
       <a-menu theme="dark" mode="inline">
@@ -51,6 +51,14 @@
         // 官方指定跳转
         e.preventDefault();
         navigateToUrl(e);
+      },
+      triggerSocketEmit() {
+        console.log("[vueSocket] emit about-event")
+        if (window.globalBus) {
+          const vueSocket = window.globalBus.getSocket('vueSocket');
+          vueSocket.emit('about-event', 321);
+          vueSocket.setState('text', '123');
+        }
       }
     }
   };

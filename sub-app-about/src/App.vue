@@ -13,13 +13,45 @@ export default {
   components: {
   },
   data() {
-    return {};
+    return {
+      text: ""
+    };
   },
   computed: {
   },
-  created() {},
+  methods: {
+    changeText(text) {
+      console.log("[text]", text);
+      this.text = text
+    },
+    listenEvent(value) {
+      console.log("[vueSocket] subscribe about-event", value)
+    }
+  },
+  created() {
+    if (window.globalBus) {
+        const vueSocket = window.globalBus.getSocket('vueSocket');
+
+        // 监听状态
+        vueSocket.watchState('text', this.changeText);
+
+        // 监听事件
+        vueSocket.on('about-event', this.listenEvent);
+    }
+  },
   mounted() {
     console.log("about mounted")
+  },
+  beforeDestroy() {
+    if (window.globalBus) {
+      const vueSocket = window.globalBus.getSocket('vueSocket');
+
+      // 取消监听状态
+      vueSocket.unwatchState('text', this.changeText);
+
+      // 解绑回调函数
+      vueSocket.off('about-event', this.listenEvent);
+    }
   },
   filters: {}
 };

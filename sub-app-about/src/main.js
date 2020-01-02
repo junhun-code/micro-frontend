@@ -4,7 +4,6 @@ import App from './App.vue'
 import router from './router'
 import singleSpaVue from "single-spa-vue";
 
-// setPublicPath("about");
 Vue.config.productionTip = false
 
 const vueOptions = {
