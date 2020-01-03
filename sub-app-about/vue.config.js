@@ -12,7 +12,7 @@ const env = process.env.VUE_APP_ENV;
 const assetsPublicPath =
   env === "dev"
     ? "//localhost:3000/about/"
-    : process.env.BASE_URL;
+    : `//sub-app-about.red-flower.cn${process.env.BASE_URL}`;
 
 module.exports = {
     publicPath: assetsPublicPath,

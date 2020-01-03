@@ -12,7 +12,7 @@ const env = process.env.VUE_APP_ENV;
 const assetsPublicPath =
   env === "dev"
     ? "//localhost:3001/home/"
-    : process.env.BASE_URL;
+    : `//sub-app-home.red-flower.cn${process.env.BASE_URL}`;
 
 module.exports = {
     publicPath: assetsPublicPath,
@@ -27,6 +27,7 @@ module.exports = {
     },
     configureWebpack: () => {
       return {
+        devtool: 'none',
         externals: {
           vue: "Vue",
           "vue-router": "VueRouter",

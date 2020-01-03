@@ -2,6 +2,9 @@
 import * as singleSpa from 'single-spa'; //导入single-spa
 import axios from 'axios';
 
+const base = process.env.BASE_URL.slice(0,process.env.BASE_URL.length-1)
+const env = process.env.VUE_APP_ENV;
+
 /*
 * runScript：一个promise同步方法。可以代替创建一个script标签，然后加载服务
 * */
@@ -36,24 +39,32 @@ singleSpa.registerApplication( //注册微前端服务
     'singleVueAbout',
     async () => {
         let singleVue = null;
-        await getManifest('http://127.0.0.1:3000/about/manifest.json', 'app').then(() => {
+        let manifestUrl = {
+            dev: 'http://127.0.0.1:3000/about/manifest.json',
+            test: 'http://sub-app-about.red-flower.cn/test/about/manifest.json'
+        }
+        await getManifest(manifestUrl[env], 'app').then(() => {
             singleVue = window.singleVueAbout;
         });
         return singleVue;
     },
-    location => location.pathname.startsWith('/about') // 配置微前端模块前缀
+    location => location.pathname.startsWith(`${base}/about`) // 配置微前端模块前缀
 );
 
 singleSpa.registerApplication( //注册微前端服务
     'singleVueHome',
     async () => {
         let singleVue = null;
-        await getManifest('http://127.0.0.1:3001/home/manifest.json', 'app').then(() => {
+        let manifestUrl = {
+            dev: 'http://127.0.0.1:3001/home/manifest.json',
+            test: 'http://sub-app-home.red-flower.cn/test/home/manifest.json'
+        }
+        await getManifest(manifestUrl[env], 'app').then(() => {
             singleVue = window.singleVueHome;
         });
         return singleVue;
     },
-    location => location.pathname.startsWith('/home') // 配置微前端模块前缀
+    location => location.pathname.startsWith(`${base}/home`) // 配置微前端模块前缀
 );
 
 singleSpa.start(); // 启动
