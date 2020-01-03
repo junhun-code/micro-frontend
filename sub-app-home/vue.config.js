@@ -1,6 +1,7 @@
 "use strict";
 
 const path = require("path");
+const StatsPlugin = require('stats-webpack-plugin');
 
 function resolve(dir) {
   return path.join(__dirname, dir);
@@ -21,6 +22,7 @@ module.exports = {
     },
     devServer: {
       port: 3001,
+      headers: {"Access-Control-Allow-Origin":"*"},
       disableHostCheck: true
     },
     configureWebpack: () => {
@@ -28,12 +30,25 @@ module.exports = {
         externals: {
           vue: "Vue",
           "vue-router": "VueRouter",
-          vuex: "Vuex"
+          vuex: "Vuex",
+          axios: "axios",
         },
         output: {
           library: "singleVueHome", // 导出名称
           libraryTarget: "window", //挂载目标
-        }
+        },
+        plugins: [
+          new StatsPlugin('manifest.json', {
+              chunkModules: false,
+              entrypoints: true,
+              source: false,
+              chunks: false,
+              modules: false,
+              assets: false,
+              children: false,
+              exclude: [/node_modules/]
+          })
+        ]
       }
     },
     chainWebpack(config) {

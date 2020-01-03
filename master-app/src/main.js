@@ -11,7 +11,7 @@ Vue.use(Ant);
 
 window.globalBus = new Bus({
   vueSocket: {
-    js: ["http://127.0.0.1:3000/about/js/chunk-vendors.js", "http://127.0.0.1:3000/about/js/app.js"]
+    js: []
   }
 });
 

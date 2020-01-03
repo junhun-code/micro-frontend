@@ -1,6 +1,7 @@
 "use strict";
 
 const path = require("path");
+const StatsPlugin = require('stats-webpack-plugin');
 
 function resolve(dir) {
   return path.join(__dirname, dir);
@@ -10,7 +11,7 @@ function resolve(dir) {
 const env = process.env.VUE_APP_ENV;
 const assetsPublicPath =
   env === "dev"
-    ? "//localhost:3001/about/"
+    ? "//localhost:3000/about/"
     : process.env.BASE_URL;
 
 module.exports = {
@@ -26,15 +27,29 @@ module.exports = {
     },
     configureWebpack: () => {
       return {
+        devtool: 'none',
         externals: {
           vue: "Vue",
           "vue-router": "VueRouter",
-          vuex: "Vuex"
+          vuex: "Vuex",
+          axios: "axios",
         },
         output: {
           library: "singleVueAbout", // 导出名称
           libraryTarget: "window", //挂载目标
-        }
+        },
+        plugins: [
+          new StatsPlugin('manifest.json', {
+              chunkModules: false,
+              entrypoints: true,
+              source: false,
+              chunks: false,
+              modules: false,
+              assets: false,
+              children: false,
+              exclude: [/node_modules/]
+          })
+        ]
       }
     },
     chainWebpack(config) {

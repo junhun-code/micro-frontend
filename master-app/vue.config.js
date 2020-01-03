@@ -8,10 +8,7 @@ function resolve(dir) {
 
 // cdn 打包地址
 const env = process.env.VUE_APP_ENV;
-const assetsPublicPath =
-  env === "dev"
-    ? "//localhost:3001/about/"
-    : process.env.BASE_URL;
+const assetsPublicPath = process.env.BASE_URL
 
 module.exports = {
     publicPath: assetsPublicPath,
@@ -28,7 +25,8 @@ module.exports = {
         externals: {
           vue: "Vue",
           "vue-router": "VueRouter",
-          vuex: "Vuex"
+          vuex: "Vuex",
+          axios: "axios",
         }
       }
     },
