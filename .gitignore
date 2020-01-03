@@ -3,10 +3,13 @@ node_modules
 /dist
 /master-app/node_modules
 /master-app/dist
+/master-app/bin
 /sub-app-about/node_modules
 /sub-app-about/dist
+/sub-app-about/bin
 /sub-app-home/node_modules
 /sub-app-home/dist
+/sub-app-home/bin
 
 # local env files
 .env.local
