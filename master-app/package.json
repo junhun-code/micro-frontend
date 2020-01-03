@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "vue-cli-service serve --mode dev",
-    "build:test": "vue-cli-service build --mode test"
+    "build:test": "vue-cli-service build --mode test",
+    "upload:test": "node ./bin/upload.test.js",
+    "deploy:test": "npm run build:test && npm run upload:test"
   },
   "dependencies": {
     "@runnan/obvious": "^1.0.4",
@@ -17,6 +19,7 @@
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.1.0",
     "@vue/cli-service": "^4.1.0",
+    "scp2": "^0.5.0",
     "vue-template-compiler": "^2.6.10"
   }
 }

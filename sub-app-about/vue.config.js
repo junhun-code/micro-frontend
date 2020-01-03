@@ -9,9 +9,9 @@ function resolve(dir) {
 // cdn 打包地址
 const env = process.env.VUE_APP_ENV;
 const assetsPublicPath =
-  env === "prod" || env === "pre"
-    ? "//img2.beikewen.com/ml-statics/prod/"
-    : "//localhost:3000/about/";
+  env === "dev"
+    ? "//localhost:3001/about/"
+    : process.env.BASE_URL;
 
 module.exports = {
     publicPath: assetsPublicPath,
